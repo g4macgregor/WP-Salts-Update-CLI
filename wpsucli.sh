@@ -52,6 +52,13 @@ echo "-"
 # The PWD.
 THE_PWD=$(pwd)
 
+# The PWD is problematic when running on cPanel as it has
+# /var/softaculous/wp-config.php
+# As most sites would be set up under /home/$user, consider this:
+if [[ $THE_PATH != /home ]]; then
+ THE_PATH=$(`cd /home`)
+fi
+
 # Start the loop.
 find . -name wp-config.php -print | while read line
 do
