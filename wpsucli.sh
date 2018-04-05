@@ -50,18 +50,11 @@ echo "--------------- ⏲  LET' START... ---------------"
 echo "-"
 
 # The PWD.
+# Not sure why this is even here.
 THE_PWD=$(pwd)
 
-# THE_PWD is problematic when running on cPanel
-# as it has /var/softaculous/wp-config.php for quick installs.
-#
-# As most sites would be set up under /home/$user, consider this:
-#if [[ $THE_PATH != /home ]]; then
-# THE_PATH=$(`cd /home`)
-#fi
-
 # Start the loop.
-find /home/ -name wp-config.php -print | while read line
+find . -name wp-config.php -print | while read line
 do
 	# echo "LINE: $line"
 	SITE="$(basename "$(dirname "$line")")"
